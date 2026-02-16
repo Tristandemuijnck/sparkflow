@@ -15,6 +15,7 @@ export interface Phase {
   description: string
   ctaText: string
   shape: string
+  icon: string
   steps: Step[]
   prev: string
   next: string
@@ -29,6 +30,7 @@ export const phases: Phase[] = [
     description: 'Every great product begins with a clear plan. The strategy phase defines what we\'re building, who it\'s for, and how we\'ll get there — translating ambition into an actionable roadmap.',
     ctaText: 'START STRATEGY',
     shape: 'icosahedron',
+    icon: 'lightbulb',
     prev: 'test',
     next: 'design',
     steps: [
@@ -114,6 +116,7 @@ export const phases: Phase[] = [
     description: 'Design is where ideas become tangible. This phase transforms strategy into visual reality — crafting interfaces that are beautiful, intuitive, and purpose-built for the people who will use them.',
     ctaText: 'EXPLORE DESIGN',
     shape: 'dodecahedron',
+    icon: 'swatchbook',
     prev: 'strategy',
     next: 'develop',
     steps: [
@@ -223,6 +226,7 @@ export const phases: Phase[] = [
     description: 'This is where designs become working software. The development phase turns static mockups into interactive, performant code — building feature by feature until the product is ready for the world.',
     ctaText: 'VIEW DEVELOPMENT',
     shape: 'faceted',
+    icon: 'console',
     prev: 'design',
     next: 'test',
     steps: [
@@ -340,6 +344,7 @@ export const phases: Phase[] = [
     description: 'The final push before launch. Testing validates that everything works as intended across every device, browser, and scenario — ensuring the product we ship is bulletproof.',
     ctaText: 'START TESTING',
     shape: 'sphere',
+    icon: 'bug',
     prev: 'develop',
     next: 'strategy',
     steps: [
