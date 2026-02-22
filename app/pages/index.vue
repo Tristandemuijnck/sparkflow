@@ -1,10 +1,65 @@
 <script setup lang="ts">
 import { phases } from "~/data/phases";
+import { gsap } from "gsap";
+import { Observer } from "gsap/Observer";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+gsap.registerPlugin(Observer, ScrollToPlugin);
+
+let currentIndex = 0;
+let animating = false;
+const observers: Observer[] = [];
+
+function goToSection(index: number, panels: HTMLElement[]) {
+  if (animating || index < 0 || index >= panels.length) return;
+  animating = true;
+  currentIndex = index;
+
+  gsap.to(window, {
+    scrollTo: { y: panels[currentIndex], autoKill: false },
+    duration: 0.4,
+    ease: "power2.inOut",
+    onComplete: () => {
+      animating = false;
+    },
+  });
+}
+
+onMounted(() => {
+  const panels = gsap.utils.toArray<HTMLElement>(".snap-panel");
+  if (!panels.length) return;
+
+  // Desktop: wheel down = next section, wheel up = previous
+  observers.push(
+    Observer.create({
+      type: "wheel",
+      onUp: () => goToSection(currentIndex - 1, panels),
+      onDown: () => goToSection(currentIndex + 1, panels),
+      tolerance: 50,
+      preventDefault: true,
+    }),
+  );
+
+  // Mobile: swipe up = next section, swipe down = previous
+  observers.push(
+    Observer.create({
+      type: "touch",
+      onUp: () => goToSection(currentIndex + 1, panels),
+      onDown: () => goToSection(currentIndex - 1, panels),
+      tolerance: 50,
+      preventDefault: true,
+    }),
+  );
+});
+
+onUnmounted(() => {
+  observers.forEach((obs) => obs.kill());
+});
 </script>
 
 <template>
-  <main class="flex min-h-screen flex-col gap-16 bg-bg">
-    <div>
+  <main class="flex min-h-dvh flex-col bg-bg">
+    <div class="snap-panel flex min-h-dvh flex-col">
       <!-- Hero header, subtitle and call-to-action -->
       <section class="px-6 pt-6">
         <p
@@ -62,7 +117,7 @@ import { phases } from "~/data/phases";
       v-for="phase in phases"
       :id="phase.id"
       :key="phase.id"
-      class="flex min-h-screen w-full flex-col"
+      class="snap-panel flex min-h-dvh w-full flex-col"
     >
       <div class="flex h-fit w-full border-b border-t border-border">
         <!-- Phase number -->
