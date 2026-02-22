@@ -5,29 +5,31 @@ import { phases } from "~/data/phases";
 <template>
   <main class="min-h-screen bg-bg">
     <!-- Hero header, subtitle and call-to-action -->
-    <section class="p-6">
-      <p class="mb-14 font-bricolage text-lg font-light uppercase text-primary">
+    <section class="px-6 pt-6">
+      <p
+        class="mb-14 font-bricolage text-lg font-light uppercase leading-[1.2] text-primary"
+      >
         Sparkflow
       </p>
-      <h1 class="mb-6 font-bricolage text-7xl text-primary">
+      <h1 class="mb-6 font-bricolage text-[80px] leading-[1.08] text-primary">
         Imagine. Create. Deliver.
       </h1>
       <p
-        class="mb-4 font-bricolage text-sm font-extralight text-primary-dimmed"
+        class="mb-4 font-bricolage text-[13px] font-extralight leading-[1.2] text-primary-dimmed"
       >
         Turn your creative spark into a completed project with a straightforward
         workflow.
       </p>
       <a
         href="#strategy"
-        class="inline-block bg-white px-5 py-2.5 font-bricolage text-sm font-semibold uppercase tracking-[1px] text-black"
+        class="inline-block bg-white px-5 py-2.5 font-bricolage text-[13px] font-semibold uppercase leading-[1.2] tracking-[1px] text-black"
       >
         Get started
       </a>
     </section>
 
     <!-- Hero navigation -->
-    <nav class="mt-20 border-t border-border">
+    <nav class="mt-[72px] border-t border-border">
       <a
         v-for="phase in phases"
         :key="phase.id"
@@ -41,7 +43,7 @@ import { phases } from "~/data/phases";
         />
         <div class="flex items-center gap-7">
           <span
-            class="flex-1 text-center font-bricolage text-4xl font-normal capitalize text-primary"
+            class="flex-1 text-center font-bricolage text-4xl font-normal capitalize leading-[1.2] text-primary"
           >
             {{ phase.id }}
           </span>
