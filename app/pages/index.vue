@@ -60,9 +60,43 @@ import { phases } from "~/data/phases";
       v-for="phase in phases"
       :id="phase.id"
       :key="phase.id"
-      class="flex min-h-screen items-center border-b border-border"
+      class="flex min-h-screen w-full border-b border-border"
     >
-      <div class="mx-auto w-full max-w-6xl px-8 py-20">
+      <div class="flex h-fit w-full border-b border-border">
+        <!-- Phase number -->
+        <p
+          class="border-r border-border px-5 py-2.5 font-bricolage text-[40px] font-light leading-[1.2] text-white"
+        >
+          {{ phase.number }}
+        </p>
+
+        <!-- Phase icons -->
+        <nav class="flex w-full flex-row items-center justify-center gap-6">
+          <a
+            v-for="p in phases"
+            :key="p.id"
+            :href="`#${p.id}`"
+            class="transition-opacity"
+            :class="
+              p.id === phase.id ? 'opacity-100' : 'opacity-25 hover:opacity-50'
+            "
+          >
+            <img
+              :src="`images/icons/${p.icon}.svg`"
+              :alt="`${p.title} icon`"
+              class="size-8"
+            />
+          </a>
+        </nav>
+      </div>
+
+      <!-- Phase shape -->
+
+      <!-- Phase content -->
+
+      <!-- Phase name -->
+
+      <!-- <div class="mx-auto w-full max-w-6xl px-8 py-20">
         <p class="mb-2 text-sm text-primary-dimmed">
           {{ phase.number }}
         </p>
@@ -78,7 +112,7 @@ import { phases } from "~/data/phases";
         >
           {{ phase.ctaText }}
         </NuxtLink>
-      </div>
+      </div> -->
     </section>
   </main>
 </template>
