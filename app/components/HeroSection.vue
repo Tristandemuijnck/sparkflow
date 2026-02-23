@@ -15,7 +15,7 @@ defineProps<{
     >
       <!-- Text side -->
       <div class="px-8 py-16 md:py-20" :class="reverse ? '[direction:ltr]' : ''">
-        <h1 class="text-4xl md:text-5xl font-light italic mb-4 font-bricolage">{{ title }}</h1>
+        <h1 class="text-4xl text-white md:text-5xl font-light italic mb-4 font-bricolage">{{ title }}</h1>
         <p class="text-primary-dimmed max-w-xl leading-relaxed">{{ description }}</p>
       </div>
       <!-- Shape side -->
